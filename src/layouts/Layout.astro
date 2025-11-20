@@ -1,0 +1,79 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="BARBARES - Restaurant & Bar à Vin - Punk / Brutalist / Underground" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body class="bg-blood-red min-h-screen cursor-crosshair selection:bg-neon-red selection:text-deep-black">
+		<div class="grain"></div>
+
+		<div class="target-bg">
+			<div class="target-cross"></div>
+		</div>
+
+		<nav class="fixed top-0 left-0 w-full z-50 border-b-4 border-deep-black bg-blood-red/90 backdrop-blur-sm">
+			<div class="flex justify-between items-center p-4">
+				<a href="/" class="text-4xl font-anton text-neon-red hover:text-paper transition-colors uppercase tracking-tighter">Barbares</a>
+				<div class="hidden md:flex gap-8">
+					<a href="#menu" class="font-anton text-xl uppercase hover:text-neon-red transition-colors">Manger</a>
+					<a href="#vins" class="font-anton text-xl uppercase hover:text-neon-red transition-colors">Boire</a>
+					<a href="#infos" class="font-anton text-xl uppercase hover:text-neon-red transition-colors">Infos</a>
+				</div>
+				<a href="https://www.instagram.com/barbares.toulouse" target="_blank" class="btn-punk text-sm px-4 py-2 !border-2">
+					Reserver
+				</a>
+			</div>
+		</nav>
+
+		<main class="relative z-10 pt-24">
+			<slot />
+		</main>
+
+		<footer class="relative z-10 border-t-4 border-deep-black bg-deep-black text-paper py-12 mt-24">
+			<div class="container mx-auto px-4">
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+					<div>
+						<h3 class="text-4xl text-neon-red mb-4">Barbares</h3>
+						<p class="font-courier text-lg">
+							Manger. Boire. Vivre.<br/>
+							Pas de chichis.<br/>
+							Juste du bon.
+						</p>
+					</div>
+					<div>
+						<h3 class="text-2xl text-neon-red mb-4">Horaires</h3>
+						<p class="font-courier">
+							Mar - Sam : 18h - 02h<br/>
+							Dim - Lun : Fermé
+						</p>
+					</div>
+					<div>
+						<h3 class="text-2xl text-neon-red mb-4">Contact</h3>
+						<p class="font-courier">
+							12 Rue des Barbares<br/>
+							31000 Toulouse<br/>
+							<a href="tel:+33500000000" class="hover:text-neon-red">05 00 00 00 00</a>
+						</p>
+					</div>
+				</div>
+				<div class="mt-12 pt-8 border-t-2 border-neon-red/30 text-center font-courier text-sm opacity-50">
+					&copy; {new Date().getFullYear()} BARBARES. DESIGNED BY ANTIGRAVITY.
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>

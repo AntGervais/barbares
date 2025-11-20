@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;700;900&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-neon-red: #FF0D0A;
+  --color-blood-red: #660000;
+  --color-deep-black: #000000;
+  --color-paper: #F5F5F0;
+
+  --font-anton: 'Anton', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --font-courier: 'Courier Prime', monospace;
+
+  --animate-spin-slow: spin 10s linear infinite;
+  --animate-glitch: glitch 1s linear infinite;
+  --animate-marquee: marquee 20s linear infinite;
+
+  @keyframes glitch {
+
+    2%,
+    64% {
+      transform: translate(2px, 0) skew(0deg);
+    }
+
+    4%,
+    60% {
+      transform: translate(-2px, 0) skew(0deg);
+    }
+
+    62% {
+      transform: translate(0, 0) skew(5deg);
+    }
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-blood-red text-paper font-inter overflow-x-hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-anton uppercase;
+  }
+}
+
+@layer components {
+  .btn-punk {
+    @apply relative inline-block px-8 py-4 bg-deep-black text-neon-red font-anton text-2xl uppercase border-4 border-neon-red hover:bg-neon-red hover:text-deep-black transition-colors duration-100;
+  }
+
+  .btn-punk:hover {
+    animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+  }
+}
+
+/* Grain Effect */
+.grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.15;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Target Element */
+.target-bg {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  height: 80vw;
+  max-width: 800px;
+  max-height: 800px;
+  border: 2px solid rgba(255, 13, 10, 0.1);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  animation: spin 60s linear infinite;
+}
+
+.target-bg::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  height: 70%;
+  border: 10px solid rgba(255, 13, 10, 0.05);
+  border-radius: 50%;
+}
+
+.target-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background: rgba(255, 13, 10, 0.1);
+  transform: translateX(-50%);
+}
+
+.target-cross {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 13, 10, 0.1);
+  transform: translateY(-50%);
+}
+
+/* Marquee */
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-content {
+  display: inline-block;
+  animation: marquee 20s linear infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-deep-black;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-neon-red border-2 border-deep-black;
+}

@@ -1,0 +1,36 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "menu"
+    label: "Menu"
+    folder: "src/content/menu"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Titre", name: "title", widget: "string"}
+      - {label: "Prix", name: "price", widget: "string", required: false}
+      - {label: "Description", name: "description", widget: "text", required: false}
+      - {label: "Catégorie", name: "category", widget: "select", options: ["A Partager / Entrées", "Plats", "Douceurs"]}
+      - {label: "Ordre", name: "order", widget: "number", default: 0}
+      - {label: "Photo", name: "photo", widget: "image", required: false}
+
+  - name: "vins"
+    label: "Vins"
+    folder: "src/content/vins"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Nom", name: "title", widget: "string"}
+      - {label: "Domaine", name: "domaine", widget: "string"}
+      - {label: "Région", name: "region", widget: "string"}
+      - {label: "Type", name: "type", widget: "select", options: ["Rouges", "Blancs", "Rosés", "Bulles"]}
+      - {label: "Prix Verre", name: "price_glass", widget: "string", required: false}
+      - {label: "Prix Bouteille", name: "price_bottle", widget: "string", required: false}
+      - {label: "Nature", name: "is_nature", widget: "boolean", default: false}
+      - {label: "Photo", name: "photo", widget: "image", required: false}
+      - {label: "Note", name: "note", widget: "string", required: false}
