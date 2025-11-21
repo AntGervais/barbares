@@ -66,10 +66,15 @@ const wineTypes = {
 			class='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border-[1px] border-blood/20 rounded-full animate-[spin_15s_linear_infinite_reverse] pointer-events-none'>
 		</div>
 
-		<div class='z-10 text-center relative px-4'>
+		<div class='z-10 text-center relative px-4 flex flex-col items-center'>
+			<span
+				class='font-inter text-xl md:text-2xl tracking-[0.2em] text-paper/80 uppercase mb-4'
+				>Bar à Vin</span
+			>
+
 			<h1
-				class='text-[15vw] md:text-[12vw] leading-[0.8] text-paper font-altero mix-blend-screen tracking-tighter transform -skew-x-6 relative'>
-				BAR<span class='text-neon'>BARES</span>
+				class='text-[14vw] md:text-[12vw] leading-[0.8] text-paper font-altero mix-blend-screen relative -ml-[1vw]'>
+				BARBARES
 				<!-- Scribble over title -->
 				<svg
 					class='absolute top-0 left-0 w-full h-full pointer-events-none overflow-visible'
@@ -84,12 +89,12 @@ const wineTypes = {
 				</svg>
 			</h1>
 
-			<p
-				class='text-xl md:text-3xl font-inter font-bold mt-8 text-paper/80 tracking-widest uppercase'>
-				BAR À VIN · COMPTOIR GOURMAND · CAVISTE
-			</p>
+			<span
+				class='font-inter text-xl md:text-2xl tracking-[0.2em] text-paper/80 uppercase mt-4'
+				>Comptoir Gourmand</span
+			>
 
-			<div class='mt-12 flex flex-col items-center gap-4'>
+			<div class='mt-16 flex flex-col items-center gap-4'>
 				<DoodleArrow
 					direction='down'
 					class='w-12 h-12 text-neon animate-bounce'
@@ -260,8 +265,8 @@ const wineTypes = {
 	<section
 		class='py-20 bg-wood text-paper border-t-4 border-deep-black relative overflow-hidden'>
 		<div class='max-w-4xl mx-auto text-center relative z-10 px-4'>
-			<h2 class='text-6xl md:text-8xl font-altero mb-8'>
-				GRANDES GUEULES<br />& VINS FINS
+			<h2 class='text-5xl md:text-6xl font-altero mb-8 uppercase'>
+				Vins fins pour<br />grandes gueules
 			</h2>
 
 			<div
@@ -269,7 +274,7 @@ const wineTypes = {
 				<p>Figeac, France</p>
 				<p>Est. 2022</p>
 				<a
-					href='https://www.instagram.com/barbares.toulouse'
+					href='https://www.instagram.com/barbaresfigeac'
 					target='_blank'
 					class='hover:text-neon transition-colors'>Instagram</a
 				>
@@ -278,7 +283,7 @@ const wineTypes = {
 			<ChaoticLine color='stroke-neon' class='mb-12 opacity-50' />
 
 			<p class='font-scribble text-2xl text-paper/40'>
-				© {new Date().getFullYear()} BARBARES. Design by Chaos.
+				© {new Date().getFullYear()} BARBARES.
 			</p>
 		</div>
 	</section>
