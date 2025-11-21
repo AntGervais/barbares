@@ -90,13 +90,13 @@
   h4,
   h5,
   h6 {
-    @apply font-anton uppercase;
+    @apply font-altero uppercase;
   }
 }
 
 @layer components {
   .btn-punk {
-    @apply relative inline-block px-8 py-4 bg-neon-red text-deep-black font-anton text-2xl uppercase border-4 border-deep-black hover:bg-deep-black hover:text-neon-red transition-colors duration-0;
+    @apply relative inline-block px-8 py-4 bg-neon-red text-deep-black font-altero text-2xl uppercase border-4 border-deep-black hover:bg-deep-black hover:text-neon-red transition-colors duration-0;
     box-shadow: 4px 4px 0px 0px var(--color-deep-black);
   }
 
