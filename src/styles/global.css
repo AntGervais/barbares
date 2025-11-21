@@ -2,34 +2,58 @@
 
 @import "tailwindcss";
 
-@theme {
-  --color-neon-red: #FF0D0A;
-  --color-blood-red: #660000;
-  --color-deep-black: #000000;
-  --color-paper: #F5F5F0;
+@font-face {
+  font-family: 'Altero';
+  src: url('/fonts/Altero-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
+@theme {
+  /* Updated Palette based on Charter */
+  --color-neon-red: #FF0000;
+  /* Pure Red from Image 2 */
+  --color-blood-red: #2A0A0A;
+  /* Much darker, almost black-red from Image 1 */
+  --color-deep-black: #050505;
+  --color-paper: #F0F0F0;
+  /* Slightly greyer paper */
+
+  --font-altero: 'Altero', 'Anton', sans-serif;
   --font-anton: 'Anton', sans-serif;
   --font-inter: 'Inter', sans-serif;
   --font-courier: 'Courier Prime', monospace;
+  --font-scribble: "Reenie Beanie", "Gloria Hallelujah", cursive;
 
-  --animate-spin-slow: spin 10s linear infinite;
-  --animate-glitch: glitch 1s linear infinite;
-  --animate-marquee: marquee 20s linear infinite;
+  --animate-spin-slow: spin 20s linear infinite;
+  --animate-glitch: glitch 0.2s linear infinite;
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
 
   @keyframes glitch {
-
-    2%,
-    64% {
-      transform: translate(2px, 0) skew(0deg);
+    0% {
+      transform: translate(0)
     }
 
-    4%,
+    20% {
+      transform: translate(-2px, 2px)
+    }
+
+    40% {
+      transform: translate(-2px, -2px)
+    }
+
     60% {
-      transform: translate(-2px, 0) skew(0deg);
+      transform: translate(2px, 2px)
     }
 
-    62% {
-      transform: translate(0, 0) skew(5deg);
+    80% {
+      transform: translate(2px, -2px)
+    }
+
+    100% {
+      transform: translate(0)
     }
   }
 
@@ -40,6 +64,18 @@
 
     100% {
       transform: translateX(-100%);
+    }
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-20px);
     }
   }
 }
@@ -61,11 +97,27 @@
 
 @layer components {
   .btn-punk {
-    @apply relative inline-block px-8 py-4 bg-deep-black text-neon-red font-anton text-2xl uppercase border-4 border-neon-red hover:bg-neon-red hover:text-deep-black transition-colors duration-100;
+    @apply relative inline-block px-8 py-4 bg-neon-red text-deep-black font-anton text-2xl uppercase border-4 border-deep-black hover:bg-deep-black hover:text-neon-red transition-colors duration-0;
+    box-shadow: 4px 4px 0px 0px var(--color-deep-black);
   }
 
   .btn-punk:hover {
-    animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+    box-shadow: -4px -4px 0px 0px var(--color-neon-red);
+    animation: glitch 0.2s steps(2) infinite;
+  }
+
+  .text-outline {
+    -webkit-text-stroke: 2px var(--color-deep-black);
+    color: transparent;
+  }
+
+  .text-outline-red {
+    -webkit-text-stroke: 2px var(--color-neon-red);
+    color: transparent;
+  }
+
+  .border-punk {
+    border: 4px solid var(--color-deep-black);
   }
 }
 
@@ -83,6 +135,7 @@
 }
 
 /* Target Element */
+/* Target Element */
 .target-bg {
   position: fixed;
   top: 50%;
@@ -92,7 +145,7 @@
   height: 80vw;
   max-width: 800px;
   max-height: 800px;
-  border: 2px solid rgba(255, 13, 10, 0.1);
+  border: 2px solid color-mix(in srgb, var(--color-neon-red), transparent 90%);
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;
@@ -107,7 +160,7 @@
   transform: translate(-50%, -50%);
   width: 70%;
   height: 70%;
-  border: 10px solid rgba(255, 13, 10, 0.05);
+  border: 10px solid color-mix(in srgb, var(--color-neon-red), transparent 95%);
   border-radius: 50%;
 }
 
@@ -118,7 +171,7 @@
   left: 50%;
   width: 2px;
   height: 100%;
-  background: rgba(255, 13, 10, 0.1);
+  background: color-mix(in srgb, var(--color-neon-red), transparent 90%);
   transform: translateX(-50%);
 }
 
@@ -128,7 +181,7 @@
   left: 0;
   width: 100%;
   height: 2px;
-  background: rgba(255, 13, 10, 0.1);
+  background: color-mix(in srgb, var(--color-neon-red), transparent 90%);
   transform: translateY(-50%);
 }
 

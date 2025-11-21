@@ -1,132 +1,285 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import ChaoticLine from "../components/ChaoticLine.astro";
+import DoodleArrow from "../components/DoodleArrow.astro";
+import GlassCard from "../components/GlassCard.astro";
 
-const menuItems = await getCollection('menu');
-const wineItems = await getCollection('vins');
+const menuItems = await getCollection("menu");
+const wineItems = await getCollection("vins");
 
 // Sort menu items by order
 const sortedMenu = menuItems.sort((a, b) => a.data.order - b.data.order);
 
 // Group menu items by category
 const menuCategories = {
-  'A Partager / Entrées': sortedMenu.filter(item => item.data.category === 'A Partager / Entrées'),
-  'Plats': sortedMenu.filter(item => item.data.category === 'Plats'),
-  'Douceurs': sortedMenu.filter(item => item.data.category === 'Douceurs'),
+	"A Partager / Entrées": sortedMenu.filter(
+		(item) => item.data.category === "A Partager / Entrées",
+	),
+	Plats: sortedMenu.filter((item) => item.data.category === "Plats"),
+	Douceurs: sortedMenu.filter((item) => item.data.category === "Douceurs"),
 };
 
 // Group wine items by type
 const wineTypes = {
-  'Rouges': wineItems.filter(item => item.data.type === 'Rouges'),
-  'Blancs': wineItems.filter(item => item.data.type === 'Blancs'),
-  'Rosés': wineItems.filter(item => item.data.type === 'Rosés'),
-  'Bulles': wineItems.filter(item => item.data.type === 'Bulles'),
+	Rouges: wineItems.filter((item) => item.data.type === "Rouges"),
+	Blancs: wineItems.filter((item) => item.data.type === "Blancs"),
+	Rosés: wineItems.filter((item) => item.data.type === "Rosés"),
+	Bulles: wineItems.filter((item) => item.data.type === "Bulles"),
 };
 ---
 
-<Layout title="BARBARES | Restaurant & Bar à Vin">
+<Layout title='BARBARES | Restaurant & Bar à Vin'>
 	<!-- Hero Section -->
-	<section class="min-h-screen flex flex-col justify-center items-center relative overflow-hidden border-b-4 border-deep-black">
-		<div class="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
-			<h1 class="text-[20vw] leading-none text-deep-black select-none">PUNK</h1>
+	<section
+		class='min-h-screen flex flex-col justify-center items-center relative overflow-hidden border-b-4 border-deep-black bg-wood'>
+		<!-- Background Gradient -->
+		<div
+			class='absolute inset-0 bg-gradient-to-b from-wood via-wood to-deep-black opacity-90'>
 		</div>
 
-		<div class="z-10 text-center">
-			<h1 class="text-[15vw] leading-[0.8] text-neon-red mix-blend-difference">BAR<br/>BARES</h1>
-			<p class="text-2xl md:text-4xl font-courier mt-8 bg-deep-black text-paper inline-block px-4 py-2 transform -rotate-2">
-				CUISINE BRUTE & VINS VIVANTS
+		<!-- Chaotic Background Lines -->
+		<div class='absolute inset-0 pointer-events-none opacity-20'>
+			<ChaoticLine
+				class='absolute top-[10%] left-0 w-full transform -rotate-2'
+				color='stroke-paper'
+			/>
+			<ChaoticLine
+				class='absolute top-[30%] left-0 w-full transform rotate-1'
+				color='stroke-blood'
+			/>
+			<ChaoticLine
+				class='absolute top-[60%] left-0 w-full transform -rotate-3'
+				color='stroke-neon'
+			/>
+			<ChaoticLine
+				class='absolute top-[80%] left-0 w-full transform rotate-2'
+				color='stroke-paper'
+			/>
+		</div>
+
+		<!-- Spinning Target Logo (Abstract) -->
+		<div
+			class='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border-[1px] border-paper/10 rounded-full animate-[spin_20s_linear_infinite] pointer-events-none'>
+		</div>
+		<div
+			class='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border-[1px] border-blood/20 rounded-full animate-[spin_15s_linear_infinite_reverse] pointer-events-none'>
+		</div>
+
+		<div class='z-10 text-center relative px-4'>
+			<h1
+				class='text-[15vw] md:text-[12vw] leading-[0.8] text-paper font-altero mix-blend-screen tracking-tighter transform -skew-x-6 relative'>
+				BAR<span class='text-neon'>BARES</span>
+				<!-- Scribble over title -->
+				<svg
+					class='absolute top-0 left-0 w-full h-full pointer-events-none overflow-visible'
+					viewBox='0 0 100 100'
+					preserveAspectRatio='none'>
+					<path
+						d='M-10,50 Q50,40 110,60'
+						fill='none'
+						stroke='#ff0d0a'
+						stroke-width='0.5'
+						class='animate-shake opacity-50'></path>
+				</svg>
+			</h1>
+
+			<p
+				class='text-xl md:text-3xl font-inter font-bold mt-8 text-paper/80 tracking-widest uppercase'>
+				Cuisine Brute & Vins Vivants
 			</p>
-		</div>
 
-		<div class="absolute bottom-0 w-full bg-neon-red text-deep-black py-2 border-t-4 border-deep-black marquee-container">
-			<div class="marquee-content text-2xl font-anton uppercase">
-				&nbsp;• Manger • Boire • Vivre • Pas de chichis • Juste du bon • Toulouse • Barbares • Cuisine Maison • Vins Nature •&nbsp;• Manger • Boire • Vivre • Pas de chichis • Juste du bon • Toulouse • Barbares • Cuisine Maison • Vins Nature •
+			<div class='mt-12 flex flex-col items-center gap-4'>
+				<DoodleArrow
+					direction='down'
+					class='w-12 h-12 text-neon animate-bounce'
+				/>
+				<a
+					href='#menu'
+					class='font-scribble text-2xl text-neon hover:text-paper transition-colors transform -rotate-6 hover:rotate-0 duration-300'>
+					Découvrir le carnage
+				</a>
 			</div>
 		</div>
 	</section>
 
 	<!-- Menu Section -->
-	<section id="menu" class="py-24 px-4 md:px-12 border-b-4 border-deep-black bg-paper text-deep-black relative">
-		<div class="max-w-6xl mx-auto">
-			<h2 class="text-8xl md:text-9xl mb-24 text-stroke-black text-transparent relative inline-block">
-				MANGER
-				<span class="absolute -top-6 -right-6 text-2xl bg-neon-red text-deep-black px-2 py-1 transform rotate-12 border-2 border-deep-black">NOV 25</span>
-			</h2>
+	<section
+		id='menu'
+		class='py-24 px-4 md:px-12 bg-paper text-deep-black relative'>
+		<!-- Paper Texture Overlay -->
+		<div
+			class="absolute inset-0 opacity-50 pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]">
+		</div>
 
-			<div class="grid gap-24">
-				{Object.entries(menuCategories).map(([category, items]) => (
-					<div>
-						<h3 class="text-5xl md:text-6xl mb-12 border-b-4 border-deep-black inline-block pb-2 hover:text-neon-red transition-colors cursor-default">{category}</h3>
-						<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
-							{items.map(item => (
-								<div class="group relative border-2 border-transparent hover:border-deep-black p-4 transition-all duration-300 hover:bg-neon-red hover:text-paper hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-									<div class="flex justify-between items-baseline mb-2 border-b-2 border-dotted border-deep-black/30 pb-1 group-hover:border-paper">
-										<h4 class="text-2xl md:text-3xl">{item.data.title}</h4>
-										{item.data.price && <span class="font-courier text-xl font-bold">{item.data.price}</span>}
+		<div class='max-w-5xl mx-auto relative z-10'>
+			<div class='text-center mb-24 relative'>
+				<h2
+					class='text-8xl md:text-9xl font-altero text-deep-black relative inline-block'>
+					LA CARTE
+					<span
+						class='absolute -top-6 -right-12 font-scribble text-4xl text-neon transform rotate-12'
+						>Miam !</span
+					>
+				</h2>
+				<ChaoticLine class='mt-4' color='stroke-deep-black' />
+			</div>
+
+			<div class='grid gap-24'>
+				{
+					Object.entries(menuCategories).map(
+						([category, items]) =>
+							items.length > 0 && (
+								<div>
+									<h3 class='text-4xl md:text-5xl font-altero mb-12 text-blood uppercase tracking-wide border-b-2 border-deep-black inline-block pb-2 transform -rotate-1'>
+										{category}
+									</h3>
+									<div class='space-y-12'>
+										{items.map((item, index) => (
+											<div class='relative group'>
+												<div class='flex justify-between items-baseline mb-2'>
+													<h4 class='text-3xl md:text-4xl font-bold font-inter uppercase tracking-tight group-hover:text-blood transition-colors'>
+														{item.data.title}
+													</h4>
+													<span class='font-inter text-2xl font-bold border-b-2 border-neon transform -rotate-2 px-2'>
+														{item.data.price}
+													</span>
+												</div>
+												<p class='font-inter text-xl text-deep-black/70 italic'>
+													{item.data.description}
+												</p>
+
+												{index % 3 === 0 && (
+													<span class='absolute -right-12 top-0 font-scribble text-xl text-deep-black transform rotate-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+														Top !
+													</span>
+												)}
+											</div>
+										))}
 									</div>
-									<p class="font-courier text-lg opacity-80 group-hover:opacity-100">{item.data.description}</p>
 								</div>
-							))}
-						</div>
-					</div>
-				))}
+							),
+					)
+				}
 			</div>
 		</div>
 	</section>
 
 	<!-- Wines Section -->
-	<section id="vins" class="py-24 px-4 md:px-12 bg-deep-black text-paper relative overflow-hidden">
-		<div class="absolute top-0 right-0 w-1/2 h-full bg-blood-red opacity-20 transform skew-x-12"></div>
+	<section
+		id='vins'
+		class='py-32 px-4 md:px-12 bg-deep-black text-paper relative overflow-hidden'>
+		<!-- Cave Atmosphere -->
+		<div
+			class='absolute inset-0 bg-gradient-to-br from-deep-black via-[#1a0500] to-deep-black'>
+		</div>
 
-		<div class="max-w-6xl mx-auto relative z-10">
-			<h2 class="text-8xl md:text-9xl mb-24 text-neon-red text-right">
-				BOIRE
-			</h2>
+		<div class='max-w-7xl mx-auto relative z-10'>
+			<div
+				class='flex flex-col md:flex-row justify-between items-end mb-24 border-b border-paper/20 pb-8'>
+				<h2 class='text-8xl md:text-9xl font-altero text-paper leading-none'>
+					CAVE
+					<span
+						class='block text-4xl font-scribble text-neon mt-4 transform -rotate-3'
+						>Vins Vivants & Nature</span
+					>
+				</h2>
+				<DoodleArrow
+					direction='left'
+					class='hidden md:block w-24 text-paper mb-8'
+				/>
+			</div>
 
-			<div class="grid gap-24">
-				{Object.entries(wineTypes).map(([type, items]) => (
-					<div>
-						<h3 class="text-5xl md:text-6xl mb-12 text-paper border-b-4 border-neon-red inline-block pb-2">{type}</h3>
-						<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-							{items.map(item => (
-								<div class="border-2 border-neon-red p-6 relative hover:bg-blood-red transition-colors group">
-									{item.data.is_nature && (
-										<span class="absolute -top-3 -right-3 bg-neon-red text-deep-black font-bold px-2 py-1 text-xs border-2 border-paper transform rotate-3">NATURE</span>
-									)}
-									<h4 class="text-2xl mb-2 group-hover:translate-x-2 transition-transform">{item.data.title}</h4>
-									<div class="font-courier text-sm mb-4 opacity-70">
-										<p>{item.data.domaine}</p>
-										<p>{item.data.region}</p>
-									</div>
-									<div class="flex justify-between items-end border-t border-neon-red/30 pt-4 mt-auto">
-										<div class="text-xs font-courier uppercase tracking-widest opacity-50">
-											{item.data.note && <span>{item.data.note}</span>}
-										</div>
-										<div class="text-right font-bold font-courier">
-											{item.data.price_glass && <div>Verre: {item.data.price_glass}</div>}
-											{item.data.price_bottle && <div>Btl: {item.data.price_bottle}</div>}
-										</div>
+			<div class='grid gap-20'>
+				{
+					Object.entries(wineTypes).map(
+						([type, items]) =>
+							items.length > 0 && (
+								<div>
+									<h3 class='text-5xl font-altero mb-12 text-paper/50 uppercase'>
+										{type}
+									</h3>
+									<div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+										{items.map((item) => (
+											<GlassCard>
+												<div class='flex justify-between items-start mb-4'>
+													<h4 class='text-2xl font-bold font-inter uppercase leading-tight'>
+														{item.data.title}
+													</h4>
+													{item.data.is_nature && (
+														<span class='font-scribble text-neon text-lg border border-neon px-2 rounded-full transform rotate-6'>
+															Nature
+														</span>
+													)}
+												</div>
+
+												<div class='mb-6 space-y-1'>
+													<p class='font-inter text-lg text-paper/80'>
+														{item.data.domaine}
+													</p>
+													<p class='font-inter text-sm text-paper/50 uppercase tracking-widest'>
+														{item.data.region}
+													</p>
+												</div>
+
+												<div class='flex justify-between items-end pt-4 border-t border-paper/10'>
+													<span class='font-scribble text-lg text-neon/80 transform -rotate-2'>
+														"{item.data.note}"
+													</span>
+													<div class='text-right font-bold font-inter'>
+														{item.data.price_glass && (
+															<div class='text-sm text-paper/60'>
+																Verre:{" "}
+																<span class='text-paper text-lg'>
+																	{item.data.price_glass}
+																</span>
+															</div>
+														)}
+														{item.data.price_bottle && (
+															<div class='text-sm text-paper/60'>
+																Btl:{" "}
+																<span class='text-paper text-lg'>
+																	{item.data.price_bottle}
+																</span>
+															</div>
+														)}
+													</div>
+												</div>
+											</GlassCard>
+										))}
 									</div>
 								</div>
-							))}
-						</div>
-					</div>
-				))}
+							),
+					)
+				}
 			</div>
 		</div>
 	</section>
 
-	<!-- Call to Action -->
-	<section class="py-24 bg-neon-red border-y-4 border-deep-black text-center">
-		<h2 class="text-6xl md:text-8xl text-deep-black mb-8">FAIM ? SOIF ?</h2>
-		<a href="https://www.instagram.com/barbares.toulouse" target="_blank" class="btn-punk bg-paper text-deep-black border-deep-black hover:bg-deep-black hover:text-neon-red text-4xl px-12 py-6">
-			RÉSERVER MAINTENANT
-		</a>
+	<!-- Footer -->
+	<section
+		class='py-20 bg-wood text-paper border-t-4 border-deep-black relative overflow-hidden'>
+		<div class='max-w-4xl mx-auto text-center relative z-10 px-4'>
+			<h2 class='text-6xl md:text-8xl font-altero mb-8'>
+				GRANDES GUEULES<br />& VINS FINS
+			</h2>
+
+			<div
+				class='flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 mb-12 font-inter text-lg tracking-widest uppercase'>
+				<p>Figeac, France</p>
+				<p>Est. 2022</p>
+				<a
+					href='https://www.instagram.com/barbares.toulouse'
+					target='_blank'
+					class='hover:text-neon transition-colors'>Instagram</a
+				>
+			</div>
+
+			<ChaoticLine color='stroke-neon' class='mb-12 opacity-50' />
+
+			<p class='font-scribble text-2xl text-paper/40'>
+				© {new Date().getFullYear()} BARBARES. Design by Chaos.
+			</p>
+		</div>
 	</section>
 </Layout>
-
-<style>
-	.text-stroke-black {
-		-webkit-text-stroke: 2px #000;
-	}
-</style>

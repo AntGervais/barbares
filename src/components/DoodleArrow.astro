@@ -1,0 +1,38 @@
+---
+interface Props {
+  class?: string;
+  color?: string;
+  direction?: "left" | "right" | "up" | "down";
+}
+
+const {
+  class: className,
+  color = "stroke-neon",
+  direction = "right",
+} = Astro.props;
+
+const rotation = {
+  right: "rotate(0)",
+  left: "rotate(180)",
+  down: "rotate(90)",
+  up: "rotate(-90)",
+};
+---
+
+<div
+  class={`inline-block ${className}`}
+  style={`transform: ${rotation[direction]}`}>
+  <svg
+    width='100'
+    height='40'
+    viewBox='0 0 100 40'
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    class={`${color} stroke-2 fill-none`}>
+    <path
+      d='M5,20 C20,15 60,25 90,20 M80,10 C85,15 90,20 90,20 C85,25 80,30 80,30'
+      stroke-linecap='round'
+      stroke-linejoin='round'
+      class='animate-shake'></path>
+  </svg>
+</div>

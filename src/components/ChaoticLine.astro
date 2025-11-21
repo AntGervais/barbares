@@ -1,0 +1,32 @@
+---
+interface Props {
+  class?: string;
+  color?: string;
+}
+
+const { class: className, color = "stroke-neon" } = Astro.props;
+---
+
+<div class={`w-full overflow-hidden ${className}`}>
+  <svg
+    viewBox='0 0 1200 20'
+    preserveAspectRatio='none'
+    class={`w-full h-3 md:h-4 ${color} fill-none stroke-2`}
+    style='filter: drop-shadow(1px 1px 0px rgba(0,0,0,0.2));'>
+    <path
+      d='M0,10 C50,9 100,11 150,10 C200,9 250,11 300,10 C350,9 400,11 450,10 C500,9 550,11 600,10 C650,9 700,11 750,10 C800,9 850,11 900,10 C950,9 1000,11 1050,10 C1100,9 1150,11 1200,10'
+      vector-effect='non-scaling-stroke'
+      class='animate-shake'>
+      <animate
+        attributeName='d'
+        dur='4s'
+        repeatCount='indefinite'
+        values='
+          M0,10 C50,9 100,11 150,10 C200,9 250,11 300,10 C350,9 400,11 450,10 C500,9 550,11 600,10 C650,9 700,11 750,10 C800,9 850,11 900,10 C950,9 1000,11 1050,10 C1100,9 1150,11 1200,10;
+          M0,10 C50,11 100,9 150,10 C200,11 250,9 300,10 C350,11 400,9 450,10 C500,11 550,9 600,10 C650,11 700,9 750,10 C800,11 850,9 900,10 C950,11 1000,9 1050,10 C1100,11 1150,9 1200,10;
+          M0,10 C50,9 100,11 150,10 C200,9 250,11 300,10 C350,9 400,11 450,10 C500,9 550,11 600,10 C650,9 700,11 750,10 C800,9 850,11 900,10 C950,9 1000,11 1050,10 C1100,9 1150,11 1200,10
+        '
+      ></animate>
+    </path>
+  </svg>
+</div>
