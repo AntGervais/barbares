@@ -68,12 +68,12 @@ const wineTypes = {
 
 		<div class='z-10 text-center relative px-4 flex flex-col items-center'>
 			<span
-				class='font-inter text-xl md:text-2xl tracking-[0.2em] text-paper/80 uppercase mb-4'
+				class='font-inter text-xl md:text-2xl tracking-[0.2em] text-paper/80 uppercase mb-6'
 				>Bar à Vin</span
 			>
 
 			<h1
-				class='text-[14vw] md:text-[12vw] leading-[0.8] text-paper font-altero mix-blend-screen relative -ml-[1vw]'>
+				class='text-[14vw] md:text-[10vw] leading-[0.8] text-paper font-altero mix-blend-screen relative -ml-[1vw]'>
 				BARBARES
 				<!-- Scribble over title -->
 				<svg
@@ -180,112 +180,99 @@ const wineTypes = {
 		</div>
 
 		<div class='max-w-7xl mx-auto relative z-10'>
-			<div
-				class='flex flex-col md:flex-row justify-between items-end mb-24 border-b border-paper/20 pb-8'>
-				<h2 class='text-8xl md:text-9xl font-altero text-paper leading-none'>
-					CAVE
-					<span
-						class='block text-4xl font-scribble text-neon mt-4 transform -rotate-3'
-						>Vins Vivants & Nature</span
-					>
-				</h2>
-				<DoodleArrow
-					direction='left'
-					class='hidden md:block w-24 text-paper mb-8'
-				/>
-			</div>
+			<section id='vins' class='py-20 bg-deep-black text-paper relative'>
+				<div class='max-w-3xl mx-auto px-4 relative z-10'>
+					<div class='text-center mb-16'>
+						<h2 class='text-6xl md:text-8xl font-altero text-neon-red mb-4'>
+							VINS
+							<span
+								class='block font-scribble text-4xl md:text-5xl text-neon-red mt-2 transform -rotate-6'>
+								au verre
+							</span>
+						</h2>
+						<DoodleArrow
+							direction='down'
+							class='w-12 h-12 text-neon-red mx-auto animate-pulse'
+						/>
+					</div>
 
-			<div class='grid gap-20'>
-				{
-					Object.entries(wineTypes).map(
-						([type, items]) =>
-							items.length > 0 && (
-								<div>
-									<h3 class='text-5xl font-altero mb-12 text-paper/50 uppercase'>
-										{type}
-									</h3>
-									<div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-										{items.map((item) => (
-											<GlassCard>
-												<div class='flex justify-between items-start mb-4'>
-													<h4 class='text-2xl font-bold font-inter uppercase leading-tight'>
-														{item.data.title}
-													</h4>
-													{item.data.is_nature && (
-														<span class='font-scribble text-neon text-lg border border-neon px-2 rounded-full transform rotate-6'>
-															Nature
-														</span>
-													)}
-												</div>
-
-												<div class='mb-6 space-y-1'>
-													<p class='font-inter text-lg text-paper/80'>
-														{item.data.domaine}
-													</p>
-													<p class='font-inter text-sm text-paper/50 uppercase tracking-widest'>
-														{item.data.region}
-													</p>
-												</div>
-
-												<div class='flex justify-between items-end pt-4 border-t border-paper/10'>
-													<span class='font-scribble text-lg text-neon/80 transform -rotate-2'>
-														"{item.data.note}"
-													</span>
-													<div class='text-right font-bold font-inter'>
-														{item.data.price_glass && (
-															<div class='text-sm text-paper/60'>
-																Verre:{" "}
-																<span class='text-paper text-lg'>
-																	{item.data.price_glass}
-																</span>
+					<div class='space-y-16'>
+						{
+							Object.entries(wineTypes).map(
+								([type, items]) =>
+									items.length > 0 && (
+										<div>
+											<div class='mb-8'>
+												<h3 class='inline-block bg-[#d3d3d3] text-deep-black font-scribble text-3xl px-6 py-1 transform -rotate-2 shadow-lg uppercase tracking-widest'>
+													{type}
+												</h3>
+											</div>
+											<div class='space-y-8'>
+												{items.map((item) => (
+													<div class='group'>
+														<div class='flex items-baseline justify-between mb-1'>
+															<h4 class='text-xl md:text-2xl font-bold font-inter'>
+																<span class='text-neon-red'>
+																	{item.data.region}
+																</span>{" "}
+																• {item.data.domaine} "{item.data.title}"
+															</h4>
+															<div class='flex-grow mx-4 border-b-2 border-dotted border-paper/30 relative -top-1' />
+															<div class='text-xl md:text-2xl font-bold font-inter'>
+																{item.data.price_glass}
 															</div>
-														)}
-														{item.data.price_bottle && (
-															<div class='text-sm text-paper/60'>
-																Btl:{" "}
-																<span class='text-paper text-lg'>
-																	{item.data.price_bottle}
-																</span>
-															</div>
-														)}
+														</div>
+
+														<div class='text-lg font-inter text-paper/90 mb-1'>
+															<Fragment
+																set:html={item.body.replace(
+																	/(Bio|Nature|BioDynaMie)/g,
+																	'<span class="font-scribble text-neon-red text-xl mx-1">$1</span>',
+																)}
+															/>
+														</div>
+
+														<p class='font-scribble text-lg text-paper/60 italic'>
+															"{item.data.note}"
+														</p>
 													</div>
-												</div>
-											</GlassCard>
-										))}
-									</div>
-								</div>
-							),
-					)
-				}
-			</div>
+												))}
+											</div>
+										</div>
+									),
+							)
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- Footer -->
+			<section
+				id='infos'
+				class='py-20 bg-wood text-paper border-t-4 border-deep-black relative overflow-hidden'>
+				<div class='max-w-4xl mx-auto text-center relative z-10 px-4'>
+					<h2 class='text-5xl md:text-6xl font-altero mb-8 uppercase'>
+						Vins fins pour<br />grandes gueules
+					</h2>
+
+					<div
+						class='flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 mb-12 font-inter text-lg tracking-widest uppercase'>
+						<p>Figeac, France</p>
+						<p>Est. 2022</p>
+						<a
+							href='https://www.instagram.com/barbaresfigeac'
+							target='_blank'
+							class='hover:text-neon transition-colors'>Instagram</a
+						>
+					</div>
+
+					<ChaoticLine color='stroke-neon' class='mb-12 opacity-50' />
+
+					<p class='font-scribble text-2xl text-paper/40'>
+						© {new Date().getFullYear()} BARBARES.
+					</p>
+				</div>
+			</section>
 		</div>
-	</section>
-
-	<!-- Footer -->
-	<section
-		id='infos'
-		class='py-20 bg-wood text-paper border-t-4 border-deep-black relative overflow-hidden'>
-		<div class='max-w-4xl mx-auto text-center relative z-10 px-4'>
-			<h2 class='text-5xl md:text-6xl font-altero mb-8 uppercase'>
-				Vins fins pour<br />grandes gueules
-			</h2>
-
-			<div
-				class='flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 mb-12 font-inter text-lg tracking-widest uppercase'>
-				<p>Figeac, France</p>
-				<p>Est. 2022</p>
-				<a
-					href='https://www.instagram.com/barbaresfigeac'
-					target='_blank'
-					class='hover:text-neon transition-colors'>Instagram</a
-				>
-			</div>
-
-			<ChaoticLine color='stroke-neon' class='mb-12 opacity-50' />
-
-			<p class='font-scribble text-2xl text-paper/40'>
-				© {new Date().getFullYear()} BARBARES.
-			</p>
-		</div>
-	</section>
-</Layout>
+	</section></Layout
+>
