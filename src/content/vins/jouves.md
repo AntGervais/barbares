@@ -1,10 +1,10 @@
 ---
 title: "Tu vin plus aux soirées"
 domaine: "Fabien Jouves"
-region: "Cahors / Vin de France"
+region: "Cahors"
 type: "Rouges"
-price_glass: "8€"
-price_bottle: "36€"
+price_glass: "6€"
 is_nature: true
-note: "Glouglou & Fun"
+note: "Frais, croquant, notes de fruits rouges. Un rouge glouglou et festif."
 ---
+2023 • VDF • Gamay, Merlot, Malbec BioDynaMie

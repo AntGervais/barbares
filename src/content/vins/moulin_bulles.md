@@ -4,5 +4,7 @@ domaine: "Domaine du Moulin"
 region: "Gaillac"
 type: "Bulles"
 price_glass: "8€"
-description: "Pétillant naturel"
+is_nature: false
+note: "Pétillant doux, pomme verte, léger. Le plaisir festif !"
 ---
+2023 • AOP Gaillac • Mauzac Bio
